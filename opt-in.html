@@ -1,31 +1,119 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<title>J. Kaminsky News Alerts — SMS Opt-In</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<body style="font-family:system-ui; max-width:700px; margin:40px auto; line-height:1.5;">
-  <h1>J. Kaminsky News Alerts</h1>
-  <p>Get breaking news alerts by text.</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>J.Kaminsky News Alerts — SMS Opt-In</title>
+  <meta name="description" content="Opt in to receive SMS breaking news alerts from J.Kaminsky News Alerts.">
+  <style>
+    :root {
+      --bg:#0b0c10; /* deep neutral */
+      --card:#ffffff;
+      --ink:#111827; /* gray-900 */
+      --muted:#6b7280; /* gray-500 */
+      --accent:#2563eb; /* blue-600 */
+      --accent-ink:#fff;
+      --ring:rgba(37,99,235,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; padding:40px 16px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background:var(--bg); color:var(--ink);
+    }
+    .wrap{max-width:800px;margin:0 auto}
+    .brand{color:#fff; text-align:center; margin-bottom:24px}
+    .brand h1{margin:0 0 6px 0; font-size:28px; letter-spacing:.2px}
+    .brand p{margin:0; color:#cbd5e1}
+    .card{background:var(--card); border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.15); padding:28px}
+    .lead{margin-top:0; font-size:20px}
+    label{display:block; font-weight:600; margin:.5rem 0 .25rem}
+    input[type="tel"], input[type="text"], input[type="email"]{
+      width:100%; padding:12px 14px; border:1px solid #d1d5db; border-radius:12px; font-size:16px;
+      outline:none; transition:border-color .15s, box-shadow .15s
+    }
+    input[type="tel"]:focus, input[type="text"]:focus, input[type="email"]:focus{
+      border-color:var(--accent); box-shadow:0 0 0 4px var(--ring)
+    }
+    .consent{display:flex; gap:10px; align-items:flex-start; margin:12px 0}
+    .consent input{margin-top:3px}
+    .consent span{font-size:14px; color:#111827}
+    .disclosure{font-size:14px; color:var(--muted); margin:10px 0 18px}
+    .btn{
+      display:inline-block; border:none; background:var(--accent); color:var(--accent-ink); font-weight:700;
+      padding:12px 18px; border-radius:12px; cursor:not-allowed; opacity:.85
+    }
+    .btn[aria-disabled="true"]{pointer-events:none}
+    .links{margin-top:18px}
+    .links a{color:var(--accent); text-decoration:none}
+    .links a:hover{text-decoration:underline}
+    .details{margin-top:22px; padding:16px; border:1px solid #e5e7eb; border-radius:12px; background:#f8fafc}
+    .details h2{margin:0 0 10px 0; font-size:16px}
+    footer{color:#cbd5e1; text-align:center; margin-top:18px; font-size:14px}
+    .note{font-size:12px; color:#64748b; margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand" aria-label="Brand">
+      <h1>J.Kaminsky News Alerts</h1>
+      <p>Breaking news by text — fast, clear, on the record.</p>
+    </header>
 
-  <form>
-    <label for="phone"><strong>Mobile number</strong></label><br>
-    <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required
-           style="padding:10px; width:100%; max-width:420px; margin:6px 0 12px;"><br>
-    <label>
-      <input type="checkbox" required>
-      I agree to receive SMS news alerts from <strong>J. Kaminsky</strong>.
-    </label>
-    <p style="font-size:0.95em;">
-      By signing up, you agree to our <a href="terms.html">Terms</a> and
-      <a href="privacy.html">Privacy Policy</a>. Message frequency varies.
-      Msg & data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help.
-    </p>
-    <button type="submit" disabled style="padding:10px 16px;">Submit (demo)</button>
-  </form>
+    <main class="card" aria-labelledby="optin-title">
+      <h1 id="optin-title" class="lead">SMS Opt-In</h1>
+      <p>Sign up below to receive SMS news alerts from <strong>J.Kaminsky News Alerts</strong>.</p>
 
-  <p style="font-size:0.9em; color:#555;">
-    NOTE: This page demonstrates opt-in for carrier review.
-  </p>
+      <!-- NOTE: This form is for carrier review/demo. It does not submit or store data. -->
+      <form id="optin-form" action="#" method="post" onsubmit="return false" aria-describedby="disclosures">
+        <label for="phone">Mobile number</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567" required>
+
+        <div class="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span>
+            I agree to receive SMS news alerts from <strong>J.Kaminsky News Alerts</strong>.
+            Message frequency varies. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help.
+            I agree to the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.
+          </span>
+        </div>
+
+        <p id="disclosures" class="disclosure">
+          By signing up, you confirm you are the account holder or have account holder’s permission. Carriers are not liable for delayed or undelivered messages.
+        </p>
+
+        <button class="btn" type="submit" aria-disabled="true" title="Demo only — disabled for review">Submit (demo)</button>
+
+        <p class="note">For review: This page demonstrates the full opt‑in flow, branding, STOP/HELP handling, and links to Terms &amp; Privacy.</p>
+      </form>
+
+      <section class="details" aria-labelledby="program-details">
+        <h2 id="program-details">Program Details</h2>
+        <ul>
+          <li><strong>Program name:</strong> J.Kaminsky News Alerts</li>
+          <li><strong>Purpose:</strong> Send breaking news alerts via SMS to subscribers who opt in.</li>
+          <li><strong>Frequency:</strong> Message frequency varies.</li>
+          <li><strong>Fees:</strong> Msg &amp; data rates may apply.</li>
+          <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to cancel at any time.</li>
+          <li><strong>Help:</strong> Reply <strong>HELP</strong> for help.</li>
+          <li><strong>Support contact:</strong> <a href="mailto:YOUR-EMAIL">YOUR-EMAIL</a> <!-- Replace with your real support email before submitting to Twilio. --></li>
+        </ul>
+      </section>
+
+      <div class="links">
+        <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy Policy</a> · <a href="index.html">Home</a>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> J.Kaminsky News Alerts
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
 
