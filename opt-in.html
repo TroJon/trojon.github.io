@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html>
-<body>
-  <h1>Subscribe to NewsAlerts SMS</h1>
-  <p>
-    Enter your phone number below and click “Subscribe” to receive 
-    breaking news alerts via text. You can reply STOP anytime to unsubscribe.
-  </p>
-  <!-- (Optional: a mock form or instructions) -->
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>J. Kaminsky News Alerts — SMS Opt-In</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body style="font-family:system-ui; max-width:700px; margin:40px auto; line-height:1.5;">
+  <h1>J. Kaminsky News Alerts</h1>
+  <p>Get breaking news alerts by text.</p>
+
   <form>
-    <input type="text" placeholder="Your phone number" disabled>
-    <button disabled>Subscribe</button>
+    <label for="phone"><strong>Mobile number</strong></label><br>
+    <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required
+           style="padding:10px; width:100%; max-width:420px; margin:6px 0 12px;"><br>
+    <label>
+      <input type="checkbox" required>
+      I agree to receive SMS news alerts from <strong>J. Kaminsky</strong>.
+    </label>
+    <p style="font-size:0.95em;">
+      By signing up, you agree to our <a href="terms.html">Terms</a> and
+      <a href="privacy.html">Privacy Policy</a>. Message frequency varies.
+      Msg & data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help.
+    </p>
+    <button type="submit" disabled style="padding:10px 16px;">Submit (demo)</button>
   </form>
-  <p>
-    By clicking Subscribe, you agree to receive up to 5 messages per day. 
-    Standard message & data rates may apply.
+
+  <p style="font-size:0.9em; color:#555;">
+    NOTE: This page demonstrates opt-in for carrier review.
   </p>
 </body>
 </html>
+
